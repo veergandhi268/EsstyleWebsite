@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initScrollSpy();
   initScrollAnimations();
   initOrientationHandler();
+  initTouchInteractions();
 });
 
 /* ==========================================================================
@@ -119,7 +120,7 @@ function initMobileMenu() {
 }
 
 /* ==========================================================================
-   3. Uniform Category Filter Tabs with Smooth Transitions
+   3. Uniform Category Filter Tabs with Green Active Glow
    ========================================================================== */
 function initCategoryTabs() {
   const tabBtns = document.querySelectorAll('.tab-btn');
@@ -141,10 +142,10 @@ function initCategoryTabs() {
           setTimeout(() => {
             card.style.opacity = '1';
             card.style.transform = 'translate3d(0, 0, 0)';
-          }, 30 + (index * 40));
+          }, 30 + (index * 35));
         } else {
           card.style.opacity = '0';
-          card.style.transform = 'translate3d(0, 16px, 0)';
+          card.style.transform = 'translate3d(0, 14px, 0)';
           setTimeout(() => {
             card.style.display = 'none';
           }, 200);
@@ -238,14 +239,12 @@ function initScrollSpy() {
    6. Scroll Reveal Animations (IntersectionObserver)
    ========================================================================== */
 function initScrollAnimations() {
-  // Elements to auto-reveal on scroll
   const targets = document.querySelectorAll(
     '.category-card, .branding-card, .process-card, .testimonial-card, .fabric-feat-card, .ribbon-item, .section-header, .contact-section-wrap'
   );
 
   if (!targets.length) return;
 
-  // Add base reveal class
   targets.forEach((el, idx) => {
     el.classList.add('reveal-item');
     const staggerClass = `reveal-stagger-${(idx % 4) + 1}`;
@@ -295,4 +294,32 @@ function initOrientationHandler() {
       }
     }
   }, { passive: true });
+}
+
+/* ==========================================================================
+   8. Tactile Mobile Touch Feedback (Green Active Highlight on Tap)
+   ========================================================================== */
+function initTouchInteractions() {
+  // Enable CSS :active on iOS Mobile Safari
+  document.addEventListener('touchstart', () => {}, { passive: true });
+
+  const touchElements = document.querySelectorAll(
+    '.ribbon-item, .category-card, .branding-card, .process-card, .fabric-feat-card, .cat-cta-link, .tab-btn, .nav-link, .btn'
+  );
+
+  touchElements.forEach(el => {
+    el.addEventListener('touchstart', () => {
+      el.classList.add('touch-active');
+    }, { passive: true });
+
+    el.addEventListener('touchend', () => {
+      setTimeout(() => {
+        el.classList.remove('touch-active');
+      }, 300);
+    }, { passive: true });
+
+    el.addEventListener('touchcancel', () => {
+      el.classList.remove('touch-active');
+    }, { passive: true });
+  });
 }
