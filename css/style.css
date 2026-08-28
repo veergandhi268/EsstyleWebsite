@@ -1384,7 +1384,11 @@ button, input, select, textarea {
   align-items: center;
   gap: 48px;
   width: max-content;
-  animation: marqueeScroll 25s linear infinite;
+  animation: marqueeScroll 40s linear infinite;
+}
+
+.clients-track:hover {
+  animation-play-state: paused;
 }
 
 .client-logo-item {
@@ -1412,7 +1416,87 @@ button, input, select, textarea {
   100% { transform: translateX(-50%); }
 }
 
+/* ==========================================================================
+   Video Testimonials
+   ========================================================================== */
+.video-testimonials-header {
+  text-align: center;
+  margin-bottom: 32px;
+  margin-top: 60px;
+}
+
+.video-testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  margin-bottom: 60px;
+}
+
+.video-card {
+  background: var(--bg-card);
+  border: 1px solid var(--dark-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: var(--transition);
+}
+
+.video-card:hover {
+  border-color: var(--accent-lime);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.5), 0 0 24px rgba(141,198,63,0.2);
+}
+
+.video-wrap {
+  position: relative;
+  aspect-ratio: 9/16;
+  background: #000;
+  overflow: hidden;
+}
+
+.video-wrap video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.video-badge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  background: rgba(0,0,0,0.7);
+  border: 1px solid rgba(141,198,63,0.4);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  backdrop-filter: blur(8px);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.video-badge i {
+  color: #e1306c;
+  font-size: 0.9rem;
+}
+
+.video-card-footer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 18px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  border-top: 1px solid var(--dark-border);
+}
+
 .testimonials-grid {
+
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 30px;
@@ -1916,6 +2000,9 @@ button, input, select, textarea {
   .testimonials-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+  .video-testimonials-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
   .contact-grid {
     grid-template-columns: 1fr;
   }
@@ -2017,6 +2104,9 @@ button, input, select, textarea {
     grid-template-columns: 1fr;
   }
   .testimonials-grid {
+    grid-template-columns: 1fr;
+  }
+  .video-testimonials-grid {
     grid-template-columns: 1fr;
   }
   .fabric-features-list {
