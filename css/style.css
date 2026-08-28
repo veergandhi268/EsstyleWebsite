@@ -2401,20 +2401,77 @@ button, input, select, textarea {
 }
 
 /* ==========================================================================
-   Touch Device Interactive Feedback
+   Touch Device & Mobile Click Feedback Animations
    ========================================================================== */
-@media (hover: none) and (pointer: coarse) {
-  .btn:active {
-    transform: scale(0.97);
+.touch-active,
+.btn:active,
+.btn.touch-active {
+  transform: scale(0.96) !important;
+  transition: transform 0.12s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.category-card.touch-active,
+.category-card:active {
+  transform: translateY(-2px) scale(0.985) !important;
+  border-color: var(--accent-lime) !important;
+  box-shadow: 0 8px 24px rgba(141, 198, 63, 0.25) !important;
+}
+
+.branding-card.touch-active,
+.branding-card:active {
+  transform: translateY(-2px) scale(0.985) !important;
+  border-color: var(--accent-lime) !important;
+  box-shadow: 0 8px 24px rgba(141, 198, 63, 0.25) !important;
+}
+
+.tab-btn.touch-active,
+.tab-btn:active {
+  transform: scale(0.94) !important;
+  background: var(--accent-lime) !important;
+  color: #070e1b !important;
+}
+
+.process-card.touch-active,
+.process-card:active {
+  transform: translateY(-2px) scale(0.985) !important;
+  border-color: var(--accent-lime) !important;
+}
+
+.fabric-feat-card.touch-active,
+.fabric-feat-card:active {
+  transform: scale(0.98) !important;
+  border-color: var(--accent-lime) !important;
+}
+
+.faq-header.touch-active,
+.faq-header:active {
+  background: rgba(141, 198, 63, 0.08) !important;
+}
+
+/* Touch Ripple Effect */
+.ripple-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.click-ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(141, 198, 63, 0.4);
+  transform: scale(0);
+  animation: rippleAnimation 0.45s cubic-bezier(0.25, 0.8, 0.25, 1);
+  pointer-events: none;
+  z-index: 99;
+}
+
+@keyframes rippleAnimation {
+  0% {
+    transform: scale(0);
+    opacity: 0.8;
   }
-  .category-card:active {
-    transform: scale(0.985);
-  }
-  .branding-card:active {
-    transform: scale(0.985);
-  }
-  .tab-btn:active {
-    transform: scale(0.95);
+  100% {
+    transform: scale(4);
+    opacity: 0;
   }
 }
 

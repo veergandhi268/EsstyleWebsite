@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initForms();
   initFaqAccordion();
   initVideoTestimonials();
+  initTouchFeedback();
 });
 
 /* ==========================================================================
@@ -195,5 +196,71 @@ function initVideoTestimonials() {
 
     video.addEventListener('play', pauseOthers);
     video.addEventListener('playing', pauseOthers);
+  });
+}
+
+/* ==========================================================================
+   7. Mobile Touch & Click Ripple / Scale Feedback
+   ========================================================================== */
+function initTouchFeedback() {
+  // Activate iOS WebKit active touch response
+  document.body.addEventListener('touchstart', () => {}, { passive: true });
+
+  const interactiveSelectors = [
+    '.btn',
+    '.tab-btn',
+    '.category-card',
+    '.branding-card',
+    '.process-card',
+    '.fabric-feat-card',
+    '.faq-header',
+    '.nav-link',
+    '.cat-cta-link',
+    '.social-link',
+    '.client-logo-item'
+  ].join(', ');
+
+  const elements = document.querySelectorAll(interactiveSelectors);
+
+  elements.forEach(el => {
+    if (!el.classList.contains('ripple-container')) {
+      el.classList.add('ripple-container');
+    }
+
+    const onPointerDown = (e) => {
+      el.classList.add('touch-active');
+
+      const rect = el.getBoundingClientRect();
+      const ripple = document.createElement('span');
+      ripple.className = 'click-ripple';
+
+      const size = Math.max(rect.width, rect.height);
+      ripple.style.width = ripple.style.height = `${size}px`;
+
+      const x = (e.clientX || (e.touches && e.touches[0] ? e.touches[0].clientX : rect.left + rect.width / 2)) - rect.left - size / 2;
+      const y = (e.clientY || (e.touches && e.touches[0] ? e.touches[0].clientY : rect.top + rect.height / 2)) - rect.top - size / 2;
+
+      ripple.style.left = `${x}px`;
+      ripple.style.top = `${y}px`;
+
+      el.appendChild(ripple);
+
+      setTimeout(() => {
+        if (ripple.parentNode) {
+          ripple.parentNode.removeChild(ripple);
+        }
+      }, 450);
+    };
+
+    const onPointerUp = () => {
+      setTimeout(() => {
+        el.classList.remove('touch-active');
+      }, 150);
+    };
+
+    el.addEventListener('pointerdown', onPointerDown, { passive: true });
+    el.addEventListener('pointerup', onPointerUp, { passive: true });
+    el.addEventListener('pointercancel', onPointerUp, { passive: true });
+    el.addEventListener('pointerleave', onPointerUp, { passive: true });
   });
 }
