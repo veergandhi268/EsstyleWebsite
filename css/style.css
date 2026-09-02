@@ -1828,6 +1828,15 @@ button, input, select, textarea {
   margin-top: 4px;
 }
 
+.footer-contact-info a {
+  color: inherit;
+  transition: color 0.25s ease;
+}
+
+.footer-contact-info a:hover {
+  color: var(--accent-lime);
+}
+
 .footer-bottom {
   padding-top: 30px;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
