@@ -2025,7 +2025,32 @@ button, input, select, textarea {
    ========================================================================== */
 @media (max-width: 768px) {
   .header-contact-info {
-    display: none;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    border: none;
+    margin-left: auto;
+    margin-right: 8px;
+  }
+  .hdr-contact-item {
+    padding: 6px 14px;
+    background: rgba(141, 198, 63, 0.12);
+    border: 1px solid rgba(141, 198, 63, 0.3);
+    border-radius: 50px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: #FFFFFF;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: all 0.25s ease;
+  }
+  .hdr-contact-item i {
+    font-size: 0.8rem;
+    color: var(--accent-lime);
+  }
+  .hdr-contact-item:active {
+    background: rgba(141, 198, 63, 0.25);
+    transform: scale(0.97);
   }
   .site-header {
     height: 70px;
@@ -2161,6 +2186,19 @@ button, input, select, textarea {
     top: 64px;
     height: calc(100vh - 64px);
     width: 260px;
+  }
+  .header-contact-info {
+    padding: 0 2px;
+    margin-right: 6px;
+  }
+  .hdr-contact-item {
+    padding: 5px 9px;
+    font-size: 0.72rem;
+    gap: 5px;
+  }
+  .hdr-contact-item span {
+    font-size: 0.72rem;
+    letter-spacing: -0.01em;
   }
 
   .hero-section {
