@@ -22,8 +22,35 @@
 
   <!-- Main Stylesheet -->
   <link rel="stylesheet" href="css/style.css?v=20260829_3">
+
+  <!-- TEMPORARY ERROR STATE: Complete Black Screen (Easily reversible) -->
+  <style id="black-screen-error-style">
+    html, body {
+      margin: 0 !important;
+      padding: 0 !important;
+      width: 100% !important;
+      height: 100% !important;
+      background-color: #000000 !important;
+      overflow: hidden !important;
+    }
+    body > * {
+      display: none !important;
+    }
+    #error-black-screen-overlay {
+      display: block !important;
+      position: fixed !important;
+      top: 0 !important;
+      left: 0 !important;
+      width: 100vw !important;
+      height: 100vh !important;
+      background-color: #000000 !important;
+      z-index: 2147483647 !important;
+    }
+  </style>
 </head>
 <body ontouchstart="">
+  <!-- Black screen error overlay -->
+  <div id="error-black-screen-overlay"></div>
 
   <!-- Main Sticky Header & Navigation -->
   <header class="site-header" id="siteHeader">
